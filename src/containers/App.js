@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import './App.css'
 import CardList from '../components/CardList'
@@ -7,6 +7,7 @@ import Scroll from '../components/Scroll'
 import { setSearchField, setRequestRobots } from '../redux/actions'
 
 const App = () => {
+	const [filteredRobots, setFilteredRobots] = useState([])
 	const dispatch = useDispatch()
 	
 	const searchField = useSelector(({ searchRobots }) => searchRobots.searchField)
@@ -14,10 +15,14 @@ const App = () => {
 	const isPending = useSelector(({ requestRobots }) => requestRobots.isPending)
 	const error = useSelector(({ requestRobots }) => requestRobots.error)
 	
+	const onSearchChange = e => dispatch(setSearchField(e.target.value))
 	useEffect(() => dispatch(setRequestRobots()), [dispatch])
 
-	const onSearchChange = e => dispatch(setSearchField(e.target.value))
-	const filteredRobots = robots.filter(robot => robot.name.toLowerCase().includes(searchField.toLowerCase()))
+	useEffect(() => {
+		setFilteredRobots(
+			robots.filter(robot => robot.name.toLowerCase().includes(searchField.toLowerCase()))
+		)
+	}, [robots, searchField])
 
 	return isPending
 		? <h1>Loading</h1> 
