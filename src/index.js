@@ -4,11 +4,11 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import './index.css'
-import App from './containers/App'
-import registerServiceWorker from './registerServiceWorker'
 import 'tachyons'
-import { searchRobots, requestRobots } from './redux/reducers'
+import './index.css'
+import * as serviceWorker from './serviceWorker'
+import App from './containers/App'
+import { searchRobots, requestRobots } from './redux/reducers.js'
 
 const logger = createLogger()
 const rootReducer = combineReducers({ searchRobots, requestRobots })
@@ -22,4 +22,4 @@ ReactDOM.render(
     document.getElementById('root')
 )
 
-registerServiceWorker()
+serviceWorker.register()
