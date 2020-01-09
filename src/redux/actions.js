@@ -21,5 +21,5 @@ export const setRequestRobots = () => dispatch => {
             dispatch({ type: REQUEST_ROBOTS_FAILED, payload: error })
         }
     }
-    fetchData()
+    return fetchData()
 }

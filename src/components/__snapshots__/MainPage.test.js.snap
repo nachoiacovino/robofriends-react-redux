@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render MainPage component 1`] = `
+<div
+  className="tc"
+>
+  <Memo() />
+  <CounterButton />
+  <SearchBox />
+  <Scroll>
+    <CardList />
+  </Scroll>
+</div>
+`;
